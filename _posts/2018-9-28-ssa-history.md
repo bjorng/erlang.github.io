@@ -677,6 +677,8 @@ simplifies the code, for example by removing unnecessary type
 tests. It finds many more opportunities for optimizations than
 `beam_type` did.
 
+[beam_ssa_type]: https://github.com/erlang/otp/blob/81d34181d391709e9d2c404fa730ee9b5c72b5e3/lib/compiler/src/beam_ssa_type.erl
+
 ## May 2018
 
 At the beginning of May, [John][john] started working on what was to become
