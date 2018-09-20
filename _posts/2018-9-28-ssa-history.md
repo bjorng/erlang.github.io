@@ -689,7 +689,7 @@ developing his optimizations.
 
 ### Rethinking the binary matching instructions
 
-When John was working on his binary optimizations, he realized that
+While working on his binary optimizations, John realized that
 the SSA instructions for binary matching were difficult to
 optimize. The binary match instructions I had designed were close to the
 semantics of the BEAM instructions. John suggested that my `bs_match`
@@ -743,8 +743,7 @@ slowest pass.
 
 I fixed several bottlenecks in the [linear scan sub pass][linear_scan], and after
 that some other bottleneck in `beam_ssa_pre_codegen`. I think that reduced the
-compilation time to well under one minute. I am not sure what the current compilation
-is on Michał's computer.
+compilation time to well under one minute.
 
 [beam_ssa_type_bottleneck]: https://github.com/erlang/otp/blob/81d34181d391709e9d2c404fa730ee9b5c72b5e3/lib/compiler/src/beam_ssa_type.erl#L944
 
