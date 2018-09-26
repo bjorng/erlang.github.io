@@ -665,7 +665,7 @@ for the optimizations I removed earlier.
 
 [beam_ssa_opt_passes]: https://github.com/erlang/otp/blob/81d34181d391709e9d2c404fa730ee9b5c72b5e3/lib/compiler/src/beam_ssa_opt.erl#L49
 
-#### beam_ssa_opt
+#### beam_ssa_type
 
 [`beam_ssa_type`][beam_ssa_type] replaces the unsafe [`beam_type`][beam_type] pass.
 
