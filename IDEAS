@@ -1,0 +1,12 @@
+* Stack vs register machines
+* Loader differences
+* JAM "frozen"
+* Dispatch differences
+* JAM kept all function arguments forever
+** Tail-recursive programming
+* BEAM's efficiency in building terms
+* Better pattern matching in BEAM
+* Instruction specializations of BIFs
+** JAM's push literal specializations
+* The r0 register
+* Atoms (index vs pre-tagged)
