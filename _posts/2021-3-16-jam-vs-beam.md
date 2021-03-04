@@ -92,10 +92,13 @@ each instruction contains a pointer to the code to execute that
 instruction. That means that the mininum size of an instruction is 8
 bytes on a 64-bit CPU. Operands follows in the following words. Some
 type of of operands can be packed (for example, X registers), but
-others (such as an integer literal or an atom) needs a whole word.
+others (such as an integer literal or an atom) need a whole word.
 
 The size of the instruction sequence above is 11 words or 88 bytes.
 
-[A brief introduction to BEAM][BEAM-primer]
+To learn more about BEAM, see [A brief introduction to
+BEAM][BEAM-primer], and to learn more about how BEAM loads and
+executes instructions, see [Interpreter optimization][int-opt].
 
 [BEAM-primer]: http://blog.erlang.org/a-brief-BEAM-primer
+[int-opt]: http://blog.erlang.org/Interpreter-Optimizations/
