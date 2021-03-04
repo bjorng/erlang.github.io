@@ -124,26 +124,70 @@ will combine common sequencs of instructions into a single instruction.
 [threaded code]: https://en.wikipedia.org/wiki/Threaded_code
 [bytecode]: https://en.wikipedia.org/wiki/Bytecode
 
-### Matching and building
+### Matching and construction
+
+To see how matching and construction of terms work in JAM and BEAM,
+let's look at this function:
 
     tuple_match({a, _, _, X}) ->
         {ok,[X]}.
 
+The compiler will generate the following code for JAM:
+
+    %% Set up a default fail handler that will raise a `function_clause`
+    %% exception if matching fails.
     try_me_else_fail
+
+    %% Allocate a stack frame for this clause with room for a
+    %% single variable.
     alloc_1
+
+    %% Push the first function argument to the stack.
     arg_0
+
+    %% Pop the top element from the stack and test whether it is
+    %% a tuple of size 4. If its, push its elements to the stack.
+    %% Otherwise, jump to the fail handler.
     unpkTuple_4
-    getAtom a
+
+    %% Pop the top element from the stack (the first element of
+    %% the tuple). Verify that it is the atom 'a'; if not, the
+    %% match fails.
+    getAtom 'a'
+
+    %% Pop and discard the second and third elements of the tuple.
     pop
     pop
+
+    %% Pop the stack and store the variable in variable slot 0.
     storeVar_0    % X
+
+    %% Finish matching. The fail handler for failed matching will now
+    %% be set to raise a `badmatch` exception if matching fails.
     commit
-    pushAtom ok
+
+    %% Push the atom 'ok' (first element of tuple to be built).
+    pushAtom 'ok'
+
+    %% Push the empty list ([]) and the value of X.
     pushNil
     pushVar_0     % X
+
+    %% Pop two elements and construct a list cell. Push the reference
+    %% to the list cell to the stack. This instruction will do a
+    %% garbage collection if there is no sufficient room on the heap
+    %% for a list cell.
     mkList
+
+    %% Construct a tuple of size 2: {ok, [X]}. This instruction
+    %% will do a garbage collection if there is not sufficient room
+    %% on the heap for a tuple of size 2.
     mkTuple_2
+
+    %% Return with created tuple as the top element of the stack.
     ret
+
+Here is the BEAM code:
 
     %% Ensure that x0 is a tuple of size 4. Jump to the label
     %% FailLabel if not.
