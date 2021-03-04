@@ -299,11 +299,10 @@ Here is the BEAM code:
 
         is_nonempty_list label_1 x0
         get_list x0 => x1, x0
-        select_val x1, label_4,  ['a', label_3, 'b', label_2]
+        select_val x1, label_4, ['a', label_3, 'b', label_2]
 
     label_2:
         allocate 0, 1
-        {allocate,0,1}.
         call match/1
         test_heap 2, 1
         put_list 2, x0 => x0
