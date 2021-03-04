@@ -193,8 +193,9 @@ Here is the BEAM code:
     %% FailLabel if not.
     is_tagged_tuple FailLabel, x0, 4, 'a'
 
-    %% Ensure that there 5 words available on the the heap for
-    %% term building. Otherwise do a garbage collection.
+    %% Ensure that there 5 are words (2 for the list cell, 3 for the
+    %% tuple) available on the the heap for term building. Otherwise
+    %% do a garbage collection.
     test_heap 5, 1
 
     %% Retrieve the fourth element from the tuple in x0.
