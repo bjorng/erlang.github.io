@@ -297,7 +297,7 @@ Here is the JAM code:
 
 Here is the BEAM code:
 
-        is_nonempty_list label_1 x0
+        is_nonempty_list label_1, x0
         get_list x0 => x1, x0
         select_val x1, label_4, ['a', label_3, 'b', label_2]
 
