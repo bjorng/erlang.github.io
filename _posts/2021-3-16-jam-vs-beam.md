@@ -251,7 +251,7 @@ Here is the JAM code:
         storeVar_0  % T
         commit
         pushVar_0   % T
-        call local, match/1
+        call_local match/1
         pushInt_1
         mkList
         ret
@@ -266,7 +266,7 @@ Here is the JAM code:
         storeVar_0  % T
         commit
         pushVar_0   % T
-        call local, match/1
+        call_local match/1
         pushInt_1
         mkList
         ret
@@ -281,7 +281,7 @@ Here is the JAM code:
         storeVar_0  % T
         commit
         pushVar_0   % T
-        call  local, match/1
+        call_local match/1
         pushAtom 'other'
         mkList
         ret
@@ -295,4 +295,37 @@ Here is the JAM code:
         pushNil
         ret
 
+Here is the BEAM code:
 
+        is_nonempty_list label_1 x0
+        get_list x0 => x1, x0
+        select_val x1, label_4,  ['a', label_3, 'b', label_2]
+
+    label_2:
+        allocate 0, 1
+        {allocate,0,1}.
+        call match/1
+        test_heap 2, 1
+        put_list 2, x0 => x0
+        deallocate 0
+        return
+
+    label_3:
+        allocate 0, 1
+        call match/1
+        test_heap 2, 1
+        put_list 1, x0 => x0
+        deallocate 0
+        return
+
+    label_4:
+        allocate 0, 1
+        call match/1
+        test_heap 2, 1
+        put_list 'other', x0 => x0
+        deallocate 0
+        return
+
+    label_1:
+        is_nil label_function_clause, x0
+        return
