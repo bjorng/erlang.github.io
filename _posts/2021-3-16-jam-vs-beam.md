@@ -124,5 +124,23 @@ will combine common sequencs of instructions into a single instruction.
 [threaded code]: https://en.wikipedia.org/wiki/Threaded_code
 [bytecode]: https://en.wikipedia.org/wiki/Bytecode
 
+### Matching and building
 
+    tuple_match({a, _, _, X}) ->
+        {ok,[X]}.
 
+    try_me_else_fail
+    alloc_1
+    arg_0
+    unpkTuple_4
+    getAtom a
+    pop
+    pop
+    storeVar_0    % X
+    commit
+    pushAtom ok
+    pushNil
+    pushVar_0     % X
+    mkList
+    mkTuple_2
+    ret
