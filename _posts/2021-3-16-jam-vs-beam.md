@@ -101,4 +101,25 @@ BEAM][BEAM-primer], and to learn more about how BEAM loads and
 executes instructions, see [Interpreter optimization][int-opt].
 
 [BEAM-primer]: http://blog.erlang.org/a-brief-BEAM-primer
-[int-opt]: http://blog.erlang.org/Interpreter-Optimizations/
+[int-opt]: http://blog.erlang.org/Interpreter-Optimizations
+
+### Taking stock: instruction execution differences
+
+Already after this brief introduction to JAM and BEAM we can see that BEAM
+probably has an edge over JAM in terms of instruction execution because BEAM
+usually executes fewer but more complex instructions in order to achieve the
+same task. Indirect branches are usually very expensive on modern CPUs because
+branch prediction is usually poor. Therefore, it is better to execute fewer
+instruction.
+
+Instruction dispatching is also slightly faster for BEAM, which uses a
+[threaded code interpreter][threaded code] as opposed to [byte code interpreter][bytecode]
+for JAM. While JAM fetches the opcode byte for an instruction and use the opcode as index
+into array to get the pointer to the executable code, BEAM already contains a direct
+pointer to th executable code.
+
+[threaded code]: https://en.wikipedia.org/wiki/Threaded_code
+[bytecode]: https://en.wikipedia.org/wiki/Bytecode
+
+
+
