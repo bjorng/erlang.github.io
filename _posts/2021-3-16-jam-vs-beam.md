@@ -5,10 +5,10 @@ tags: BEAM JAM
 author: Björn Gustavsson
 ---
 
-As long as Erlang has existed, there has always been the need and the
-ambition to make it faster. This blog post is a history lesson that
-outlines the major Erlang implementations and attempts to improve
-the performance of Erlang.
+In my [previous blog post][road_to_the_jit], I mentioned in passing
+that JAM (Joe's Abstract Machine) was replaced with BEAM.
+
+[road_to_the_jit]: http://blog.erlang.org/the-road-to-the-jit
 
 ### The Prolog interpreter
 
