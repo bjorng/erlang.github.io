@@ -15,11 +15,11 @@ to speed up JAM? This blog post will try to answer that question.
 
 ### The fundamental difference between JAM and BEAM
 
-JAM is a [stack machine][] and BEAM is a [register machine][]. Let's look
+JAM is a [stack machine] and BEAM is a [register machine][]. Let's look
 at an example to see what this means. Consider this function:
 
 [stack machine]: https://en.wikipedia.org/wiki/Stack_machine
-[register maching]: https://en.wikipedia.org/wiki/Register_machine
+[register machine]: https://en.wikipedia.org/wiki/Register_machine
 
     foo(A, B) ->
         A * 3 + B * 42.
