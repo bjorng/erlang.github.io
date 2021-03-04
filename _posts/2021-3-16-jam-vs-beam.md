@@ -144,3 +144,24 @@ will combine common sequencs of instructions into a single instruction.
     mkList
     mkTuple_2
     ret
+
+    %% Ensure that x0 is a tuple of size 4. Jump to the label
+    %% FailLabel if not.
+    is_tagged_tuple FailLabel, x0, 4, 'a'
+
+    %% Ensure that there 5 words available on the the heap for
+    %% term building. Otherwise do a garbage collection.
+    test_heap 5, 1
+
+    %% Retrieve the fourth element from the tuple in x0.
+    get_tuple_element x0, 3 => x0
+
+    %% Create the list [X]. The previous test_heap instruction
+    %% has ensured that there is sufficient room left on the heap.
+    put_list x0 nil => x0
+
+    %% Build the tuple {ok, [X]}.
+    put_tuple2 'ok', x0 => x0
+
+    %% Return from the function (the return value is in x0).
+    ret
