@@ -15,26 +15,42 @@ to speed up JAM? This blog post will try to answer that question.
 
 ### The fundamental difference between JAM and BEAM
 
-JAM is a [stack machine] and BEAM is a [register machine][]. Let's look
-at an example to see what this means. Consider this function:
+The most fundamental difference is that JAM is a [stack machine] and
+BEAM is a [register machine]. Let's examine each machine in turn to
+see what that means.
 
 [stack machine]: https://en.wikipedia.org/wiki/Stack_machine
 [register machine]: https://en.wikipedia.org/wiki/Register_machine
 
+#### A very brief introduction to JAM
+
+Consider this function:
+
     foo(A, B) ->
         A * 3 + B * 42.
 
+To evaluate the expression in the function body of `foo/2` using
+a stack machine, the expression is rewritten to [rpn][reverse Polish notation]
+like this:
+
     A 3 *  B 42 *  +
 
-    arg_0
-    pushInt_3
-    arith_times
-    arg_1
-    pushInt1 42
-    arith_times
-    arith_plus
+That is, the operands come before the operator. Each operator pops its operand
+off the stack, computes the result, and pushes the result back to the stack.
+
+    arg_0          % Push the value of function argument 0 (A) to the stack
+    pushInt_3      % Push the integer 3 to the stack
+    arith_times    % Pop two elements, multiply them, and push the result
+
+    arg_1          % Push value of function argument 1 (B) to the stack
+    pushInt1 42    % Push the integer 42 to the stack
+    arith_times    % Pop two elements, multiply them, and push the result
+
+    arith_plus     % Pop two elements and push their sum
 
 
+
+[rpn]: https://en.wikipedia.org/wiki/Reverse_Polish_notation
 
 
     gc_bif '*', x0, 3 => x0
