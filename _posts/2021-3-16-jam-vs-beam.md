@@ -189,9 +189,9 @@ The compiler will generate the following code for JAM:
 
 Here is the BEAM code:
 
-    %% Ensure that x0 is a tuple of size 4. Jump to the label
-    %% FailLabel if not.
-    is_tagged_tuple FailLabel, x0, 4, 'a'
+    %% Ensure that x0 is a tuple of size 4 and that its first element
+    %% is the atom 'a'. Jump to the label FailLabel if not.
+    %% is_tagged_tuple FailLabel, x0, 4, 'a'
 
     %% Ensure that there 5 are words (2 for the list cell, 3 for the
     %% tuple) available on the the heap for term building. Otherwise
@@ -210,3 +210,24 @@ Here is the BEAM code:
 
     %% Return from the function (the return value is in x0).
     ret
+
+Here are some of the differences between JAM and BEAM that can be
+gleaned from the example:
+
+* At the beginning of each clause, JAM always sets up stack frame
+using the `alloc` to hold the local varibles for that clause. BEAM
+only needs to set up a stack frame if other functions are to be called
+and returned from. In this example, no functions are called, so no stack
+frame is needed.
+
+* Matching of tuples in JAM works by pushing all elements of the tuple
+to the stack. Elements that should not be matched must be explicitly
+popped and discarded. In contrast, in BEAM only the tuple elements
+that are to be matched are retrieved from the tuple.
+
+* In JAM, each instruction that builds a term (`mkList` and `mkTuple`
+in the example) needs to ensure that there is sufficient room on the
+heap for the term to be built. In contrast, in BEAM there is the
+`test_heap` instruction to ensure that sufficient number of heap words
+are available, and the build instructions that follow (`put_list` and
+`put_tuple2`) only need to do the term building.
