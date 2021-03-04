@@ -242,6 +242,7 @@ are available, and the build instructions that follow (`put_list` and
 
 Here is the JAM code:
 
+    %% match([a|T]) -> [1|match(T)];
         try_me_else label_1
         alloc_1
         arg_0
@@ -255,6 +256,7 @@ Here is the JAM code:
         mkList
         ret
 
+    %% match([b|T]) -> [2|match(T)];
     label_1:
         try_me_else label_2
         alloc 1
@@ -269,6 +271,7 @@ Here is the JAM code:
         mkList
         ret
 
+    %% match([_|T]) -> [other|match(T)];
     label_2:
         try_me_else label_3
         alloc_1
@@ -283,6 +286,7 @@ Here is the JAM code:
         mkList
         ret
 
+    %% match([]) -> [].
     label_3:
         try_me_else_fail
         arg_0
