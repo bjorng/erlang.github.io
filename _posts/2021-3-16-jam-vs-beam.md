@@ -30,7 +30,7 @@ Consider this function:
         A * 3 + B * 42.
 
 To evaluate the expression in the function body of `foo/2` using
-a stack machine, the expression is rewritten to [rpn][reverse Polish notation]
+a stack machine, the expression is rewritten to [reverse Polish notation][rpn]
 like this:
 
     A 3 *  B 42 *  +
@@ -48,10 +48,21 @@ off the stack, computes the result, and pushes the result back to the stack.
 
     arith_plus     % Pop two elements and push their sum
 
+The `pushInt1` instruction pushes an unsigned integer that will fit in
+one byte. As an optimization, there are also the instructions `pushInt_0`
+through `pushInt_15` that will push the integers 0 through 15, respectively.
+Similarly, there `arg_0` through `arg_15` to push the first 16 function arguments,
+and `argN` to push any function agument.
 
+The advantage of a stack machine is that code generated for it is
+fairly compact, since there is no need to indicate where the operands
+are (they are usually on the stack). The instruction sequence above is
+just 8 bytes (one byte for each instruction, and one additional byte
+for the `42` following the `pushInt1` instruction).
 
 [rpn]: https://en.wikipedia.org/wiki/Reverse_Polish_notation
 
+#### A very brief introduction to JAM
 
     gc_bif '*', x0, 3 => x0
     gc_bif '*', x1, 42 => x1
