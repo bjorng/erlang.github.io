@@ -9,7 +9,7 @@ In my [previous blog post][road_to_the_jit], I mentioned in passing
 that JAM (Joe's Abstract Machine) was replaced with BEAM. A reader
 asked for more details about what makes BEAM faster than JAM, and
 couldn't the same tricks and optimizations used in BEAM have been used
-to speed up JAM?
+to speed up JAM? This blog post will try to answer that question.
 
 [road_to_the_jit]: http://blog.erlang.org/the-road-to-the-jit
 
