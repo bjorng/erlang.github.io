@@ -38,6 +38,8 @@ like this:
 That is, the operands come before the operator. Each operator pops its operand
 off the stack, computes the result, and pushes the result back to the stack.
 
+Here is how the code for expression would look like for JAM:
+
     arg_0          % Push the value of function argument 0 (A) to the stack
     pushInt_3      % Push the integer 3 to the stack
     arith_times    % Pop two elements, multiply them, and push the result
@@ -62,11 +64,15 @@ for the `42` following the `pushInt1` instruction).
 
 [rpn]: https://en.wikipedia.org/wiki/Reverse_Polish_notation
 
-#### A very brief introduction to JAM
+#### A very brief introduction to BEAM
 
-    gc_bif '*', x0, 3 => x0
-    gc_bif '*', x1, 42 => x1
-    gc_bif '+', x0, x1 => x0
+
+
+Here is how the code for expression would look like for BEAM:
+
+    gc_bif '*', x0, 3 => x0   % Multiply x0 with 3, storing into x0
+    gc_bif '*', x1, 42 => x1  % Multiply x1 with 42, storing into x1
+    gc_bif '+', x0, x1 => x0  % Add x0 and x1, storing into x0
 
 
 [A brief introduction to BEAM][BEAM-primer]
