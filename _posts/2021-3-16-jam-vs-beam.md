@@ -6,7 +6,10 @@ author: Björn Gustavsson
 ---
 
 In my [previous blog post][road_to_the_jit], I mentioned in passing
-that JAM (Joe's Abstract Machine) was replaced with BEAM.
+that JAM (Joe's Abstract Machine) was replaced with BEAM. A reader
+asked my how it come that BEAM is faster than JAM, and couldn't the
+same tricks and optimizations used in BEAM have been used to speed
+up JAM?
 
 [road_to_the_jit]: http://blog.erlang.org/the-road-to-the-jit
 
