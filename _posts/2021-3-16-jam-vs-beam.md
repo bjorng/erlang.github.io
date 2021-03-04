@@ -242,53 +242,53 @@ are available, and the build instructions that follow (`put_list` and
 
 Here is the JAM code:
 
-    try_me_else label_1
-    alloc_1
-    arg_0
-    unpkList
-    getAtom 'a'
-    storeVar_0  % T
-    commit
-    pushVar_0   % T
-    call local, match/1
-    pushInt_1
-    mkList
-    ret
+        try_me_else label_1
+        alloc_1
+        arg_0
+        unpkList
+        getAtom 'a'
+        storeVar_0  % T
+        commit
+        pushVar_0   % T
+        call local, match/1
+        pushInt_1
+        mkList
+        ret
 
-label_1:
-    try_me_else label_2
-    alloc 1
-    arg_0
-    unpkList
-    getAtom 'b'
-    storeVar_0  % T
-    commit
-    pushVar_0   % T
-    call local, match/1
-    pushInt_1
-    mkList
-    ret
+    label_1:
+        try_me_else label_2
+        alloc 1
+        arg_0
+        unpkList
+        getAtom 'b'
+        storeVar_0  % T
+        commit
+        pushVar_0   % T
+        call local, match/1
+        pushInt_1
+        mkList
+        ret
 
-label_2:
-    try_me_else label_3
-    alloc_1
-    arg_0
-    unpkList
-    pop
-    storeVar_0  % T
-    commit
-    pushVar_0   % T
-    call  local, match/1
-    pushAtom 'other'
-    mkList
-    ret
+    label_2:
+        try_me_else label_3
+        alloc_1
+        arg_0
+        unpkList
+        pop
+        storeVar_0  % T
+        commit
+        pushVar_0   % T
+        call  local, match/1
+        pushAtom 'other'
+        mkList
+        ret
 
-label_3:
-    try_me_else_fail
-    arg_0
-    getNil
-    commit
-    pushNil
-    ret
+    label_3:
+        try_me_else_fail
+        arg_0
+        getNil
+        commit
+        pushNil
+        ret
 
 
